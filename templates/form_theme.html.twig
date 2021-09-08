@@ -1,0 +1,10 @@
+{% block email_label %}
+    {{ name }}
+    {{ form_errors(form) }}
+{% endblock %}
+
+{% block email_widget %}
+    <form-email>
+        <input type="text" name="{{ full_name }}"/>
+    </form-email>
+{% endblock %}

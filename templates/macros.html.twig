@@ -53,11 +53,27 @@
     {% endfor %}
 {% endmacro %}
 
+{% macro render_imported_movie(movie) %}
+    <div class="row">
+        <div class="col-lg-3">
+            <a href="/movie/{{ movie.id }}" title="The Matrix Reloaded" class="album-link">
+                <img height="209" width="140" src="{{ movie.poster }}">
+            </a>
+        </div>
+        <div class="col-lg-9">
+            <a href="/movie/{{ movie.id }}" title="Click to see the movie details"><h6 class="m-1 font-weight-bold">{{ movie.title }}</h6></a>
+            <small class="text-success font-weight-bold m-1">{{ movie.releaseDate|date('Y-m-d') }}</small>
+            <p class="ml-1 mr-1 mt-3 mb-2"><span class="text-muted">{{ movie.plot }}</span></p>
+        </div>
+    </div>
+    <hr />
+{% endmacro %}
+
 {% macro render_show_movie(movie) %}
     <div class="row mb-5">
         <div class="col-lg-10">
             <h1 class="display-4 font-weight-bold">{{ movie.title }} ({{ movie.releaseDate|date('Y') }}).</h1>
-            <p class="text-success font-weight-bold">{{ movie.releaseDate|date }}</p>
+            <p class="text-success font-weight-bold">{{ movie.releaseDate|date('Y-m-d') }}</p>
         </div>
         <div class="col-lg-2 my-auto">
             <h2 class="font-weight-bold"><i class="fas fa-star text-warning"></i> 8,5/10</h2>
@@ -91,30 +107,6 @@
                     <div class="row pt-4 text-muted">
                         <div class="col">
                             <p>{{ movie.plot }}</p>
-                        </div>
-                    </div>
-                    <div class="row pt-2">
-                        <div class="col-md-2">
-                            <p class="font-weight-bold">Directors:</p>
-                        </div>
-                        <div class="col-md-10 text-muted">
-                            <a href="#" title="See this director">Anthony Russo</a>, <a href="#" title="See this director">Joe Russo</a>
-                        </div>
-                    </div>
-                    <div class="row pt-2">
-                        <div class="col-md-2">
-                            <p class="font-weight-bold">Writers:</p>
-                        </div>
-                        <div class="col-md-10 text-muted">
-                            <a href="#" title="See this writer">Christopher Markus (screenplay by)</a>, <a href="#" title="See this writer">Stephen McFeely (screenplay by)</a>, <a href="#" title="See this writer">Stan Lee (based on the Marvel comics by)</a>, <a href="#" title="See this writer">Jack Kirby (based on the Marvel comics by)</a>, <a href="#" title="See this writer">Joe Simon (Captain America created by)</a>, <a href="#" title="See this writer">Jack Kirby (Captain America created by)</a>, <a href="#" title="See this writer">Steve Englehart (Star-Lord created by)</a>, <a href="#" title="See this writer">Steve Gan (Star-Lord created by)</a>, <a href="#" title="See this writer">Bill Mantlo (Rocket Raccoon created by)</a>, <a href="#" title="See this writer">Keith Giffen (Rocket Raccoon created by)</a>, <a href="#" title="See this writer">Jim Starlin (Thanos)</a>, <a href="#" title="See this writer">Gamora & Drax (created by)</a>, <a href="#" title="See this writer">Stan Lee (Groot created by)</a>, <a href="#" title="See this writer">Larry Lieber (Groot created by)</a>, <a href="#" title="See this writer">Jack Kirby (Groot created by)</a>, <a href="#" title="See this writer">Steve Englehart (Mantis created by)</a>, <a href="#" title="See this writer">Don Heck (Mantis created by)</a>
-                        </div>
-                    </div>
-                    <div class="row pt-2">
-                        <div class="col-md-2">
-                            <p class="font-weight-bold">Actors:</p>
-                        </div>
-                        <div class="col-md-10 text-muted">
-                            <a href="#" title="See this actor">Robert Downey Jr.</a>, <a href="#" title="See this actor">Chris Evans</a>, <a href="#" title="See this actor">Mark Ruffalo</a>, <a href="#" title="See this actor">Chris Hemsworth</a>
                         </div>
                     </div>
                 </div>
