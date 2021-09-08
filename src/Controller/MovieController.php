@@ -13,7 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * @Route(methods="GET")
@@ -25,11 +24,9 @@ class MovieController extends AbstractController
      */
     private $api;
 
-    public function __construct(HttpClientInterface $httpClient)
+    public function __construct(OmdbClient $omdbClient)
     {
-        $apiToken = '28c5b7b1';
-        $omdHost = 'http://www.omdbapi.com/';
-        $this->api = new OmdbClient($httpClient, $apiToken, $omdHost);
+        $this->api = $omdbClient;
     }
 
     /**
