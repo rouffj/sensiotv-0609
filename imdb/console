@@ -1,0 +1,15 @@
+<?php
+
+require __DIR__.'/vendor/autoload.php';
+
+use App\AppCommand;
+use App\Omdb\OmdbClient;
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\HttpClient\HttpClient;
+
+$omdbClient = new OmdbClient(HttpClient::create(), '28c5b7b1', 'http://www.omdbapi.com/');
+
+$application = new Application();
+$application->add(new AppCommand($omdbClient));
+$application->run();

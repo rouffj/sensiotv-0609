@@ -4,7 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-
+    my_omdb_token: 28c5b7b1
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -12,7 +12,8 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
         bind:
-            $omdbToken: 28c5b7b1
+            #$omdbToken: '%my_omdb_token%'
+            $omdbToken: '%env(OMDB_TOKEN)%'
             $omdbHost: http://www.omdbapi.com/
 
     # makes classes in src/ available to be used as services
