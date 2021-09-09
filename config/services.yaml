@@ -41,3 +41,7 @@ services:
     #        $omdbToken: 28c5b7b1
     #        $omdbHost: http://www.omdbapi.com/
     #        $httpClient: '@Symfony\Contracts\HttpClient\HttpClientInterface'
+
+    App\EventListener\UserRegisteredListener:
+        tags:
+            - { name: kernel.event_listener, event: user_registered, method: onEvent }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Event\UserRegisteredEvent;
 use App\Form\RegisterType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +14,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class UserController extends AbstractController
 {
@@ -22,7 +23,8 @@ class UserController extends AbstractController
      */
     public function register(Request $request,
                              EntityManagerInterface $entityManager,
-                             UserPasswordHasherInterface $passwordHasher): Response
+                             UserPasswordHasherInterface $passwordHasher,
+                             EventDispatcherInterface $eventDispatcher): Response
     {
         $user = new User();
         //$user->setFirstName('Joseph')->setLastName('ROUFF');
@@ -40,6 +42,8 @@ class UserController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
+
+            $eventDispatcher->dispatch(new UserRegisteredEvent($user), 'user_registered');
 
             dump($user, $form->get('terms')->getData());
         }
