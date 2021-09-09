@@ -3,13 +3,14 @@
 {% block title 'Login' %}
 
 {% block body %}
-        
-
         <section class="bg-light mt-5">
         <div class="container pb-5 pt-5">
             <div class="row align-items-center">
                 <div class="col-lg-5">
                     <h1 class="font-weight-bold display-4 mt-5 ml-2 mb-5">Log in to your account.</h1>
+                    {% if login_error %}
+                        <div class="alert alert-warning">{{ login_error.message }}</div>
+                    {% endif %}
                     <form class="form-signin" method="post" action="/login_check">
                         <div class="row">
                             <div class="col-12 m-2">

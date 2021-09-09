@@ -1,3 +1,5 @@
+{% import 'macros.html.twig' as macros %}
+
 <header>
     <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark justify-content-center">
         <a class="navbar-brand mr-0" href="/"><img src="/assets/images/sensiotv-icon.png" alt="SensioTV Brand Icon"> <span class="color-green">TV+</span></a>
@@ -14,11 +16,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="/movie/latest" title="Search">Latest</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contact" title="You need some help ? Contact us !">Contact us</a>
+            </li>
         </ul>
         <ul class="navbar-nav text-center">
-            <li class="nav-item active"><a class="nav-link" href="/register" title="Register or log in"><i class="fas fa-plus-square"></i></a></li>
-            <li class="nav-item active"><a class="nav-link" href="/login" title="Register or log in"><i class="fas fa-user"></i></a></li>
-
+            {{ macros.login_section() }}
         </ul>
 
 

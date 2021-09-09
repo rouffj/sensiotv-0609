@@ -21,7 +21,11 @@
                         {{ macros.render_review(review) }}
                     {% endfor %}
 
-                    {{ form(review_form) }}
+                    {% if is_granted('ROLE_USER') %}
+                        {{ form(review_form) }}
+                    {% else %}
+                        <div>You should be logged in to able to write a review.</div>
+                    {% endif %}
                 </div>
             </div>
         </div>
